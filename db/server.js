@@ -16,10 +16,8 @@ app.use(express.json());
 
 let notes = [
     {
-        routeName: "testing",
-        id: "1",
-        title: "Test Title",
-        text: "asdasasdasdlklk"
+        title: "",
+        text: ""
     }
 ];
 
@@ -40,6 +38,13 @@ app.get("/api/notes", (req, res) => {
 
         res.end(data)
     })
+});
+
+//Adding (POST) to the notes
+app.post("/api/notes", (req, res) => {
+    let newNote = req.body
+    notes.push(newNote)
+    res.json(newNote)
 });
 
 
