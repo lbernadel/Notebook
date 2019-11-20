@@ -1,5 +1,4 @@
 //Dependencies
-
 const express = require("express"),
     path = require("path"),
     fs = require("fs");
@@ -32,19 +31,27 @@ app.get("/notes", (req, res) => {
 
 //Routes to API
 //Getting the notes
-app.get("/api/notes", (req, res) => {
-    fs.readFile("db.json", (err, data) => {
+app.get("/api/notes", (req, res) => {                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    fs.readFile("db.json", "utf8", (err, data) => {
         if (err) throw err;
-
+        res.writeHead(200, {"Content-Type": "application/json"})
         res.end(data)
     })
 });
 
 //Adding (POST) to the notes
 app.post("/api/notes", (req, res) => {
-    let newNote = req.body
-    notes.push(newNote)
-    res.json(newNote)
+    fs.readFile("db.json", "utf8", (err, data) => {
+        if (err) throw err;
+        
+        fs.writeFile("db.json", "utf8", (err, data) =>{
+            let newNote = req.body
+            if (err) throw err;
+            notes.push(newNote)
+            res.json(data)
+        })
+    // res.end(data)
+    })
 });
 
 
