@@ -55,16 +55,12 @@ app.delete("/api/notes/:id", (req, res) => {
         if (err) throw err;
         return res.json(data)
     })
-
-    //reload notes page
-    location.reload();   
 });
+
 //Default to Home if any invalid path is entered
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "public/index.html"))
 });
 
 //starts server
-app.listen(PORT, () => {
-    console.log(`App's listening on: ${PORT}`)
-});
+app.listen(PORT, () => console.log(`App's listening on: ${PORT}.`))
