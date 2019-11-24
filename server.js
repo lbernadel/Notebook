@@ -56,6 +56,8 @@ app.delete("/api/notes/:id", (req, res) => {
         return res.json(data)
     })
 
+    //reload notes page
+    location.reload();   
 });
 //Default to Home if any invalid path is entered
 app.get("*", (req, res) => {
